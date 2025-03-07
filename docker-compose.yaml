@@ -5,10 +5,13 @@ services:
     env_file: .env
     volumes:
       - wordpress:/var/www/html
+      - "./scripts/wordpress_secure_installation.sh:/secure_install.sh"
     networks:
       - wordpress
     depends_on:
       - db
+    user: "www-data"
+    entrypoint: ["/secure_install.sh"]
 
   nginx:
     image: nginx
