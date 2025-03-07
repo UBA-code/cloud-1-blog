@@ -10,8 +10,6 @@ services:
       - wordpress
     depends_on:
       - db
-    user: "www-data"
-    entrypoint: ["/secure_install.sh"]
 
   nginx:
     image: nginx
