@@ -17,12 +17,15 @@ services:
     volumes:
       - wordpress:/var/www/html:ro
       - ./nginx-conf:/etc/nginx/conf.d
+      - certbot:/var/www/certbot:ro
     ports:
       - 80:80
+      - 443:443
     networks:
       - wordpress
     depends_on:
       - wordpress
+    command: ["/reload_nginx.sh"]
 
   db:
     image: mysql:8.0
@@ -42,9 +45,21 @@ services:
     ports:
       - 8080:80
 
+  certbot:
+    image: certbot/certbot
+    restart: always
+    env_file: .env
+    networks:
+      - wordpress
+    volumes:
+      - certbot:/var/www/certbot
+      - certbot-conf:/etc/letsencrypt
+
 volumes:
   wordpress:
   db:
+  certbot:
+  certbot-conf:
 
 networks:
   wordpress:
