@@ -16,17 +16,15 @@ services:
     restart: always
     volumes:
       - wordpress:/var/www/html:ro
-      - ./nginx-conf/nginx.conf.template:/etc/nginx/conf.d/nginx.conf.template
+      - ./nginx-conf:/etc/nginx/conf.d
       - certbot:/var/www/certbot:ro
     ports:
       - 80:80
       - 443:443
     networks:
       - wordpress
-    env_file: .env
     depends_on:
       - wordpress
-    command: /bin/sh -c "envsubst '${WORDPRESS_URL}' < /etc/nginx/conf.d/nginx.conf.template > /etc/nginx/conf.d/nginx.conf && nginx -g 'daemon off;'"
 
   db:
     image: mysql:8.0
