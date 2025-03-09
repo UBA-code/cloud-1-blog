@@ -16,7 +16,7 @@ services:
     restart: always
     volumes:
       - wordpress:/var/www/html:ro
-      - ./nginx-conf:/etc/nginx/conf.d
+      - ./nginx-conf/nginx.conf.template:/etc/nginx/conf.d/nginx.conf.template
       - certbot:/var/www/certbot:ro
     ports:
       - 80:80
