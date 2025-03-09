@@ -18,7 +18,7 @@ services:
       - wordpress:/var/www/html:ro
       - ./nginx-conf:/etc/nginx/conf.d
       - certbot:/var/www/certbot:ro
-      - certbot-cert-dir:/etc/nginx/ssl
+      - certbot-cert-dir:/etc/nginx/ssl:ro
     ports:
       - 80:80
       - 443:443
@@ -54,12 +54,14 @@ services:
     volumes:
       - certbot:/var/www/certbot
       - certbot-cert-dir:/etc/letsencrypt
+      - certbot-logs:/var/log/letsencrypt
 
 volumes:
   wordpress:
   db:
   certbot:
   certbot-cert-dir:
+  certbot-logs:
 
 networks:
   wordpress:
