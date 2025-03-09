@@ -25,7 +25,6 @@ services:
       - wordpress
     depends_on:
       - wordpress
-    command: ["/reload_nginx.sh"]
 
   db:
     image: mysql:8.0
