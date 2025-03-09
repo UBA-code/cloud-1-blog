@@ -26,7 +26,7 @@ services:
     env_file: .env
     depends_on:
       - wordpress
-    command: /bin/sh -c "envsubst '${WORDPRESS_URL}' < /etc/nginx/conf.d/nginx-conf && nginx -g 'daemon off;'"
+    command: /bin/sh -c "envsubst '${WORDPRESS_URL}' < /etc/nginx/conf.d/nginx.conf && nginx -g 'daemon off;'"
 
   db:
     image: mysql:8.0
