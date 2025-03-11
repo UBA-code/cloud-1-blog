@@ -42,8 +42,8 @@ services:
     env_file: .env
     networks:
       - wordpress
-    ports:
-      - 8080:80
+    # ports:
+    #   - 8080:80
 
   certbot:
     image: certbot/certbot
